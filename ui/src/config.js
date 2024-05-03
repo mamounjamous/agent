@@ -9,9 +9,9 @@ const dev = {
   ENV: 'dev',
   // Comment the below lines, when using codespaces or other special DNS names (which you can't control)
   HOSTNAME: hostname,
-  API_URL: `${protocol}//${hostname}:80/api`,
+  API_URL: `https://demo.kerberos.io/api`,
   URL: `${protocol}//${hostname}:80`,
-  WS_URL: `${websocketprotocol}//${hostname}:80/ws`,
+  WS_URL: `ws://demo.kerberos.io/ws`,
   MODE: window['env']['mode'],
   // Uncomment, and comment the above lines, when using codespaces or other special DNS names (which you can't control)
   // HOSTNAME: externalHost,
@@ -23,7 +23,7 @@ const dev = {
 const prod = {
   ENV: process.env.REACT_APP_ENVIRONMENT,
   HOSTNAME: hostname,
-  API_URL: `${protocol}//${host}/api`,
+  API_URL: `https://demo.kerberos.io/api`,
   URL: `${protocol}//${host}`,
   WS_URL: `${websocketprotocol}//${host}/ws`,
   MODE: window['env']['mode'],

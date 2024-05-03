@@ -7,6 +7,9 @@
     "save": "Save",
     "verify_connection": "Verify Connection"
   },
+  "timepicker": {
+    "placeholder": "Select time"
+  },
   "navigation": {
     "profile": "Profile",
     "admin": "admin",

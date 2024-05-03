@@ -9,12 +9,17 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  ControlBar,
+  Tabs,
+  Tab,
+  Icon,
 } from '@kerberos-io/ui';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getEvents } from '../../actions/agent';
 import config from '../../config';
 import './Media.scss';
+import TimePicker from '../../components/TimePicker/TimePicker';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Media extends React.Component {
@@ -28,6 +33,7 @@ class Media extends React.Component {
       open: false,
       currentRecording: '',
     };
+    this.trackScrolling = this.trackScrolling.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +53,7 @@ class Media extends React.Component {
     });
   }
 
-  trackScrolling = () => {
+  trackScrolling() {
     const { events, dispatchGetEvents } = this.props;
     const { isScrolling } = this.state;
     const wrappedElement = document.getElementById('loader');
@@ -70,7 +76,7 @@ class Media extends React.Component {
         });
       }
     }
-  };
+  }
 
   isBottom(el) {
     return el.getBoundingClientRect().bottom + 50 <= window.innerHeight;
@@ -84,7 +90,7 @@ class Media extends React.Component {
   }
 
   render() {
-    const { events, eventsLoaded, t } = this.props;
+    const { events, eventsLoaded, dispatchGetEvents, t } = this.props;
     const { isScrolling, open, currentRecording } = this.state;
     return (
       <div id="media">
@@ -101,6 +107,18 @@ class Media extends React.Component {
             />
           </Link>
         </Breadcrumb>
+
+        <ControlBar type="row">
+          <Tabs>
+            <TimePicker callBack={dispatchGetEvents} />
+            <Tab
+              label={t('settings.submenu.all')}
+              value="all"
+              onClick={() => this.changeTab('https://twitter.com')}
+              icon={<Icon label="twitter" />}
+            />
+          </Tabs>
+        </ControlBar>
 
         <div className="stats grid-container --four-columns">
           {events.map((event) => (
@@ -162,7 +180,6 @@ class Media extends React.Component {
             />
           </Modal>
         )}
-
         {!isScrolling && eventsLoaded !== 0 && (
           <div id="loader">
             <div className="lds-ripple">

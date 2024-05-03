@@ -7,6 +7,9 @@
     "save": "Opslaan",
     "verify_connection": "Verifieer Connectie"
   },
+  "timepicker": {
+    "placeholder": "Kies een tijdstip"
+  },
   "navigation": {
     "profile": "Profiel",
     "admin": "beheerder",
